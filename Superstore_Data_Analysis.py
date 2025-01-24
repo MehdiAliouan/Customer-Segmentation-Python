@@ -276,7 +276,7 @@ plt.title('Distribution of sales by category')
 plt.show()
 
 
-# In[27]:
+# In[28]:
 
 
 # Sorting the subcategory sales
@@ -306,14 +306,119 @@ plt.tight_layout()
 plt.show()
 
 
-# In[ ]:
+# #### Trend sales analysis
+
+# In[32]:
 
 
+# Converting 'Order Date' to datetime format
+df['Order Date'] = pd.to_datetime(df['Order Date'], dayfirst=True, errors='coerce')
+
+# Group by year and calculating the sum of sales
+yearly_sales = df.groupby(df['Order Date'].dt.year)['Sales'].sum()
+
+# Reset index to convert from Series to DataFrame
+yearly_sales = yearly_sales.reset_index()
+
+# Rename columns order date and sales
+yearly_sales = yearly_sales.rename(columns={'Order Date': 'Year', 'Sales': 'Total Sales'})
+
+print(yearly_sales)
 
 
-
-# In[ ]:
-
+# In[42]:
 
 
+# converting the year column to integer type
+yearly_sales['Year'] = yearly_sales['Year'].astype(int)
+
+# Create the bar chart
+plt.figure(figsize=(8, 5))
+bars = plt.bar(yearly_sales['Year'], yearly_sales['Total Sales'], color='#1f4e78', edgecolor='black')
+
+# Set x-ticks to show only integer years
+plt.xticks(yearly_sales['Year'])
+
+# Add labels and title
+plt.xlabel('Year', fontsize=12)
+plt.ylabel('Total Sales ($)', fontsize=12)
+plt.title('Yearly Sales Performance', fontsize=14)
+
+# Show the chart
+plt.tight_layout()
+plt.show()
+
+
+# In[47]:
+
+
+plt.plot(yearly_sales['Year'], yearly_sales['Total Sales'],marker='o', linestyle='-')
+
+
+# In[50]:
+
+
+# Create the line chart
+plt.figure(figsize=(8, 5))
+plt.plot(yearly_sales['Year'], yearly_sales['Total Sales'], 
+         marker='o', linestyle='-', color='#1f4e78', linewidth=2, markersize=8, label='Total Sales')
+
+# Add title and labels
+plt.title('Yearly Sales Trend', fontsize=14, fontweight='bold')
+plt.xlabel('Year', fontsize=12)
+plt.ylabel('Total Sales ($)', fontsize=12)
+
+# Add gridlines for better readability
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+
+# Add legend
+plt.legend(loc='upper left', fontsize=10)
+
+# Enhance x-axis ticks for clarity
+plt.xticks(yearly_sales['Year'], fontsize=10)
+
+# Tight layout for better spacing
+plt.tight_layout()
+
+# Display the chart
+plt.show()
+
+
+# In[52]:
+
+
+df['Order Date'] = pd.to_datetime(df['Order Date'], dayfirst=True)
+year_sales = df[df['Order Date'].dt.year == 2017]
+quarterly_sales = year_sales.resample('Q', on='Order Date')['Sales'].sum()
+quarterly_sales = quarterly_sales.reset_index()
+quarterly_sales = quarterly_sales.rename(columns = {'Order Date': 'Quarter', 'Sales' : 'Total Sales'})
+print(quarterly_sales)
+
+
+# In[53]:
+
+
+plt.plot(quarterly_sales['Quarter'], quarterly_sales['Total Sales'], marker = 'o', linestyle = '--')
+
+plt.tight_layout()
+plt.xticks(rotation=75)
+plt.show()
+
+
+# In[55]:
+
+
+df['Order Date'] = pd.to_datetime(df['Order Date'], dayfirst = True)
+yearly_sales = df[df['Order Date'].dt.year == 2017]
+monthly_sales = yearly_sales.resample('M', on = 'Order Date')['Sales'].sum()
+monthly_sales = monthly_sales.reset_index()
+monthly_sales = monthly_sales.rename(columns={'Order Date':'Month', 'Sales' : 'Total Monthly Sales'})
+
+print (monthly_sales)
+
+
+# In[56]:
+
+
+plt.plot(monthly_sales['Month'], monthly_sales['Total Monthly Sales'], marker = 'o', linestyle = '--')
 
