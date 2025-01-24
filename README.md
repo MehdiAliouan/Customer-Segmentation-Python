@@ -1,12 +1,12 @@
 ## Customer-Segmentation-Python
 
-Situation:
+### Situation:
 The project focuses on analyzing a "Superstore" dataset to gain insights into customer segmentation, sales performance, customer loyalty, shipping strategies, and product popularity.
 
-Task:
+### Task:
 The goal was to perform exploratory data analysis to identify key customer segments, understand sales distribution across different categories, evaluate customer loyalty, analyze shipping modes, and determine the most popular products.
 
-Action:
+### Action:
 
 Data Loading and Cleaning: Imported necessary libraries and loaded the dataset. Checked for null values and duplicates to ensure data quality.
 Customer Segmentation: Identified the types of customers and their distribution. Visualized the segmentation with pie charts.
@@ -15,7 +15,8 @@ Customer Loyalty: Analyzed customer order frequency to identify repeat customers
 Shipping Strategies: Evaluated the usage frequency of different shipping modes and visualized the distribution with pie charts.
 Sales by State and City: Analyzed sales distribution across different states and cities.
 Product Analysis: Identified popular product categories and sub-categories, and calculated their sales.
-Results:
+
+### Results:
 
 Customer Segmentation: The largest segment is 'Consumer' (51.9%), followed by 'Corporate' (30.2%) and 'Home Office' (17.8%).
 Sales Analysis: The 'Consumer' segment had the highest total sales followed by 'Corporate' and 'Home Office'.
