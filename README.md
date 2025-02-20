@@ -1,4 +1,4 @@
-## Customer-Segmentation-Python
+## Superstore Business Insights: Analyzing Customer Segmentation, Sales, and Operational Strategies-Python
 
 ### Situation:
 The project focuses on analyzing a "Superstore" dataset to gain insights into customer segmentation, sales performance, customer loyalty, shipping strategies, and product popularity.
